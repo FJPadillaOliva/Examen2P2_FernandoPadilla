@@ -4,7 +4,16 @@
  */
 package examenlab2p2_fernandopadilla;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +27,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        leerArtistas();
+        leerClientes();
     }
 
     ArrayList<Cliente> clientes = new ArrayList();
@@ -25,6 +36,103 @@ public class MainFrame extends javax.swing.JFrame {
 
     Cliente cliente;
     Artista artista;
+
+    private void actClientes() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            File fichero = new File("./clientes.usr");
+            fw = new FileOutputStream(fichero);
+            bw = new ObjectOutputStream(fw);
+            bw.writeObject(clientes);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    private void leerClientes() {
+        File fichero = new File("./clientes.usr");
+        FileInputStream entrada = null;
+        ObjectInputStream objeto = null;
+        if (fichero.exists()) {
+            try {
+                entrada = new FileInputStream(fichero);
+                objeto = new ObjectInputStream(entrada);
+                clientes = (ArrayList<Cliente>) objeto.readObject();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                objeto.close();
+                entrada.close();
+            } catch (IOException ex) {
+            }
+        }
+    }
+
+    private void actArtistas() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            File fichero = new File("./artistas.usr");
+            fw = new FileOutputStream(fichero);
+            bw = new ObjectOutputStream(fw);
+            bw.writeObject(artistas);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    private void leerArtistas() {
+        File fichero = new File("./artistas.usr");
+        FileInputStream entrada = null;
+        ObjectInputStream objeto = null;
+        if (fichero.exists()) {
+            try {
+                entrada = new FileInputStream(fichero);
+                objeto = new ObjectInputStream(entrada);
+                artistas = (ArrayList<Artista>) objeto.readObject();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                objeto.close();
+                entrada.close();
+            } catch (IOException ex) {
+            }
+        }
+    }
+
+    private void bitacora(String usuario,String tipo) {
+        File fichero = new File("./bitacora.txt");
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(fichero,true);
+            bw = new BufferedWriter(fw);
+            bw.write("Se ha creado el usuario: "+usuario+ ". De tipo : "+ tipo +", con fecha de creacion de: " + new Date().toString());
+            bw.flush();
+        } catch (Exception e) {
+        }
+        try {
+            fw.close();
+            bw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +143,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_Cliente = new javax.swing.JDialog();
+        jd_Artista = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,6 +171,28 @@ public class MainFrame extends javax.swing.JFrame {
         btn_crearA = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         tf_nomA = new javax.swing.JTextField();
+
+        javax.swing.GroupLayout jd_ClienteLayout = new javax.swing.GroupLayout(jd_Cliente.getContentPane());
+        jd_Cliente.getContentPane().setLayout(jd_ClienteLayout);
+        jd_ClienteLayout.setHorizontalGroup(
+            jd_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_ClienteLayout.setVerticalGroup(
+            jd_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jd_ArtistaLayout = new javax.swing.GroupLayout(jd_Artista.getContentPane());
+        jd_Artista.getContentPane().setLayout(jd_ArtistaLayout);
+        jd_ArtistaLayout.setHorizontalGroup(
+            jd_ArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_ArtistaLayout.setVerticalGroup(
+            jd_ArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -305,6 +437,8 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             clientes.add(new Cliente(username, password, edad));
             JOptionPane.showMessageDialog(this, "Creado exitosamente");
+            String tipo = "Cliente";
+            bitacora(username, tipo);
         }
     }//GEN-LAST:event_btn_crearUMouseClicked
 
@@ -332,6 +466,8 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             artistas.add(new Artista(nombreA, username, password, edad));
             JOptionPane.showMessageDialog(this, "Creado exitosamente");
+            String tipo = "Artista";
+            bitacora(username, tipo);
         }
     }//GEN-LAST:event_btn_crearAMouseClicked
 
@@ -423,6 +559,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JDialog jd_Artista;
+    private javax.swing.JDialog jd_Cliente;
     private javax.swing.JTextField tf_nomA;
     private javax.swing.JPasswordField tf_password;
     private javax.swing.JPasswordField tf_passwordU;
