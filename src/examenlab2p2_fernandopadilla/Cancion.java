@@ -45,11 +45,11 @@ public class Cancion {
     }
 
     public void setReferenciaA(Album album) {
-        this.referencia = album.getNombre();
+        this.referencia = album.getTitulo();
     }
     
     public void setReferenciaS(Single single) {
-        this.referencia = single.getNombre();
+        this.referencia = single.getTitulo();
     }
 
     @Override

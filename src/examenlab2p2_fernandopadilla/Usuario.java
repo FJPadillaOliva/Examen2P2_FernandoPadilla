@@ -1,8 +1,10 @@
 
 package examenlab2p2_fernandopadilla;
 
+import java.io.Serializable;
 
-public class Usuario {
+
+public class Usuario implements Serializable {
     private String username, password;
     private int edad;
 
