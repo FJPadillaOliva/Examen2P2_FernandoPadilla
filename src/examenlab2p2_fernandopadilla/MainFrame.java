@@ -199,10 +199,13 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("LOGIN");
 
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Username");
 
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Password");
 
         btn_login.setText("Login");
@@ -258,10 +261,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Username");
 
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Password");
 
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Edad");
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(12, 12, null, 1));
@@ -320,10 +326,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("Username");
 
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Password");
 
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("Edad");
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(18, 18, null, 1));
@@ -335,6 +344,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Nombre Artistico");
 
         tf_nomA.addActionListener(new java.awt.event.ActionListener() {
