@@ -449,6 +449,9 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Creado exitosamente");
             String tipo = "Cliente";
             bitacora(username, tipo);
+            actClientes();
+            tf_passwordU.setText("");
+            tf_usernameU.setText("");
         }
     }//GEN-LAST:event_btn_crearUMouseClicked
 
@@ -475,9 +478,13 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El usuario ingresado ya existe");
         } else {
             artistas.add(new Artista(nombreA, username, password, edad));
+            actArtistas();
             JOptionPane.showMessageDialog(this, "Creado exitosamente");
             String tipo = "Artista";
             bitacora(username, tipo);
+            tf_nomA.setText("");
+            tf_passwordU1.setText("");
+            tf_usernameU1.setText("");
         }
     }//GEN-LAST:event_btn_crearAMouseClicked
 
@@ -504,6 +511,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         if (login) {
+            tf_username.setText("");
+            tf_password.setText("");
             if (tipoU == 1) {
                 JOptionPane.showMessageDialog(this, "Bienvenido " + username);
             } else {

@@ -1,0 +1,1 @@
+Se ha creado el usuario: cooper10. De tipo : Cliente, con fecha de creacion de: Fri Sep 22 16:42:50 CST 2023
