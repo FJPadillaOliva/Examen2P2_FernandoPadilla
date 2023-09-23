@@ -793,11 +793,13 @@ public class MainFrame extends javax.swing.JFrame {
                     artistas.get(artistas.indexOf(artista)).getAlbumesP().get(cb_album.getSelectedIndex())));
             JOptionPane.showMessageDialog(jd_Artista, "Agregado exitosamente");
             actArtistas();
+            cb_album.setModel(actualizarcbAlbum());
         } else if (rb_Single.isSelected()) {
             canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer) spinner_tiempo.getValue(),
                     artistas.get(artistas.indexOf(artista)).getCancionesS().get(cb_single.getSelectedIndex())));
             JOptionPane.showMessageDialog(jd_Artista, "Agregado exitosamente");
             actArtistas();
+            cb_single.setModel(actualizarcbSingle());
         }
     }//GEN-LAST:event_btn_aggCancionMouseClicked
 
