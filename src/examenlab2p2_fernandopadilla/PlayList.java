@@ -1,10 +1,11 @@
 
 package examenlab2p2_fernandopadilla;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class PlayList {
+public class PlayList implements Serializable{
     private String nombreP;
     private int contLikes;
     private ArrayList<Cancion> canciones = new ArrayList();

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Album extends Lanzamiento{
+public class Album extends Lanzamiento {
     private ArrayList<Cancion> canciones = new ArrayList();
     private int cantC;
 

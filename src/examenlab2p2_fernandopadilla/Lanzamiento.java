@@ -1,10 +1,11 @@
 
 package examenlab2p2_fernandopadilla;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class Lanzamiento {
+public class Lanzamiento implements Serializable {
    private String titulo;
    private Date fechaL;
    private int contLikes;

@@ -1,8 +1,10 @@
 
 package examenlab2p2_fernandopadilla;
 
+import java.io.Serializable;
 
-public class Cancion {
+
+public class Cancion implements Serializable{
     private String titulo;
     private int duracion;
     private Album album;
