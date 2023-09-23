@@ -763,6 +763,8 @@ public class MainFrame extends javax.swing.JFrame {
         if (!tf_tituloPublicacion.getText().isBlank()) {
             artistas.get(artistas.indexOf(artista)).getAlbumesP().add(new Album(0, tf_tituloPublicacion.getText(), jDateChooser1.getDate(), 0));
             cb_album.setModel(actualizarcbAlbum());
+            JOptionPane.showMessageDialog(jd_Artista, "Agregado exitosamente");
+            actArtistas();
         } else {
             JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
         }
@@ -773,6 +775,8 @@ public class MainFrame extends javax.swing.JFrame {
         if (!tf_tituloPublicacion.getText().isBlank()) {
             artistas.get(artistas.indexOf(artista)).getCancionesS().add(new Single(tf_tituloPublicacion.getText(), jDateChooser1.getDate(), 0));
             cb_single.setModel(actualizarcbSingle());
+            JOptionPane.showMessageDialog(jd_Artista, "Agregado exitosamente");
+            actArtistas();
         } else {
             JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
         }
@@ -787,9 +791,13 @@ public class MainFrame extends javax.swing.JFrame {
         if (rb_Album.isSelected()) {
             canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer) spinner_tiempo.getValue(),
                     artistas.get(artistas.indexOf(artista)).getAlbumesP().get(cb_album.getSelectedIndex())));
+            JOptionPane.showMessageDialog(jd_Artista, "Agregado exitosamente");
+            actArtistas();
         } else if (rb_Single.isSelected()) {
             canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer) spinner_tiempo.getValue(),
                     artistas.get(artistas.indexOf(artista)).getCancionesS().get(cb_single.getSelectedIndex())));
+            JOptionPane.showMessageDialog(jd_Artista, "Agregado exitosamente");
+            actArtistas();
         }
     }//GEN-LAST:event_btn_aggCancionMouseClicked
 
