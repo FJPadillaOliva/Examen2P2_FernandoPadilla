@@ -742,14 +742,16 @@ public class MainFrame extends javax.swing.JFrame {
             tf_username.setText("");
             tf_password.setText("");
             if (tipoU == 1) {
+                cb_album.setModel(actualizarcbAlbum());
+                cb_single.setModel(actualizarcbSingle());
                 JOptionPane.showMessageDialog(this, "Bienvenido " + username);
                 jd_Artista.pack();
                 jd_Artista.setModal(true);
                 jd_Artista.setLocationRelativeTo(this);
                 jd_Artista.setVisible(true);
+            } else {
                 cb_album.setModel(actualizarcbAlbum());
                 cb_single.setModel(actualizarcbSingle());
-            } else {
                 JOptionPane.showMessageDialog(this, "Bienvenido " + username);
                 jd_Cliente.pack();
                 jd_Cliente.setModal(true);
