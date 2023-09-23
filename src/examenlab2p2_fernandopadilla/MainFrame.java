@@ -30,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         leerArtistas();
         leerClientes();
+        this.setLocationRelativeTo(null);
     }
 
     ArrayList<Cliente> clientes = new ArrayList();
@@ -116,14 +117,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-    private void bitacora(String usuario,String tipo) {
+    private void bitacora(String usuario, String tipo) {
         File fichero = new File("./bitacora.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            fw = new FileWriter(fichero,true);
+            fw = new FileWriter(fichero, true);
             bw = new BufferedWriter(fw);
-            bw.write("Se ha creado el usuario: "+usuario+ ". De tipo : "+ tipo +", con fecha de creacion de: " 
+            bw.write("Se ha creado el usuario: " + usuario + ". De tipo : " + tipo + ", con fecha de creacion de: "
                     + new Date().toString());
             bw.flush();
         } catch (Exception e) {
@@ -146,6 +147,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jd_Cliente = new javax.swing.JDialog();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
         jd_Artista = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -196,15 +200,41 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         tf_nomA = new javax.swing.JTextField();
 
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("tab1", jPanel9);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("tab2", jPanel10);
+
         javax.swing.GroupLayout jd_ClienteLayout = new javax.swing.GroupLayout(jd_Cliente.getContentPane());
         jd_Cliente.getContentPane().setLayout(jd_ClienteLayout);
         jd_ClienteLayout.setHorizontalGroup(
             jd_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
         jd_ClienteLayout.setVerticalGroup(
             jd_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
         );
 
         jLabel13.setText("Titulo");
@@ -712,8 +742,16 @@ public class MainFrame extends javax.swing.JFrame {
             tf_password.setText("");
             if (tipoU == 1) {
                 JOptionPane.showMessageDialog(this, "Bienvenido " + username);
+                jd_Artista.pack();
+                jd_Artista.setModal(true);
+                jd_Artista.setLocationRelativeTo(this);
+                jd_Artista.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Bienvenido " + username);
+                jd_Cliente.pack();
+                jd_Cliente.setModal(true);
+                jd_Cliente.setLocationRelativeTo(this);
+                jd_Artista.setVisible(true);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Nombre de usuario o contraseña incorrecta");
@@ -724,7 +762,8 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!tf_tituloPublicacion.getText().isBlank()) {
             artistas.get(artistas.indexOf(artista)).getAlbumesP().add(new Album(0, tf_tituloPublicacion.getText(), jDateChooser1.getDate(), 0));
-        }else{
+            cb_album.setModel(actualizarcbAlbum());
+        } else {
             JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
         }
     }//GEN-LAST:event_btn_agregarAlbumMouseClicked
@@ -733,7 +772,8 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!tf_tituloPublicacion.getText().isBlank()) {
             artistas.get(artistas.indexOf(artista)).getCancionesS().add(new Single(tf_tituloPublicacion.getText(), jDateChooser1.getDate(), 0));
-        }else{
+            cb_single.setModel(actualizarcbSingle());
+        } else {
             JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
         }
     }//GEN-LAST:event_btn_agregarsingleMouseClicked
@@ -745,29 +785,30 @@ public class MainFrame extends javax.swing.JFrame {
     private void btn_aggCancionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_aggCancionMouseClicked
         // TODO add your handling code here:
         if (rb_Album.isSelected()) {
-            canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer)spinner_tiempo.getValue(), 
-            artistas.get(artistas.indexOf(artista)).getAlbumesP().get(cb_album.getSelectedIndex())));    
-        }else if(rb_Single.isSelected()){
-            canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer)spinner_tiempo.getValue(), 
+            canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer) spinner_tiempo.getValue(),
+                    artistas.get(artistas.indexOf(artista)).getAlbumesP().get(cb_album.getSelectedIndex())));
+        } else if (rb_Single.isSelected()) {
+            canciones.add(new Cancion(tf_tituloCancion.getText(), (Integer) spinner_tiempo.getValue(),
                     artistas.get(artistas.indexOf(artista)).getCancionesS().get(cb_single.getSelectedIndex())));
         }
     }//GEN-LAST:event_btn_aggCancionMouseClicked
 
-    private DefaultComboBoxModel actualizarcbSingle(){
+    private DefaultComboBoxModel actualizarcbSingle() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Single t : artistas.get(artistas.indexOf(artista)).getCancionesS()) {
             modelo.addElement(t);
         }
         return modelo;
     }
-    
-    private DefaultComboBoxModel actualizarcbAlbum(){
+
+    private DefaultComboBoxModel actualizarcbAlbum() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Album t : artistas.get(artistas.indexOf(artista)).getAlbumesP()) {
             modelo.addElement(t);
         }
         return modelo;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -829,6 +870,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -836,10 +878,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JDialog jd_Artista;
     private javax.swing.JDialog jd_Cliente;
     private javax.swing.JRadioButton rb_Album;
