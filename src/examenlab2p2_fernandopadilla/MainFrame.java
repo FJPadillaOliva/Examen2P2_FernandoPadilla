@@ -31,6 +31,8 @@ public class MainFrame extends javax.swing.JFrame {
         leerArtistas();
         leerClientes();
         this.setLocationRelativeTo(null);
+        cb_album.setModel(actualizarcbAlbum());
+        cb_single.setModel(actualizarcbSingle());
     }
 
     ArrayList<Cliente> clientes = new ArrayList();
