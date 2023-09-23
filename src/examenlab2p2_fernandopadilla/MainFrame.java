@@ -122,7 +122,8 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             fw = new FileWriter(fichero,true);
             bw = new BufferedWriter(fw);
-            bw.write("Se ha creado el usuario: "+usuario+ ". De tipo : "+ tipo +", con fecha de creacion de: " + new Date().toString());
+            bw.write("Se ha creado el usuario: "+usuario+ ". De tipo : "+ tipo +", con fecha de creacion de: " 
+                    + new Date().toString());
             bw.flush();
         } catch (Exception e) {
         }
@@ -147,6 +148,14 @@ public class MainFrame extends javax.swing.JFrame {
         jd_Artista = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tf_tituloPublicacion = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        btn_agregarAlbum = new javax.swing.JButton();
+        btn_agregarsingle = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -195,10 +204,78 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 344, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Agregar Lanzamiento", jPanel4);
+        jTabbedPane2.addTab("Agregar Cancion", jPanel4);
+
+        jLabel11.setText("Titulo de Publicacion");
+
+        jLabel12.setText("Fecha de Lanzamiento");
+
+        btn_agregarAlbum.setText("Agregar Album");
+        btn_agregarAlbum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_agregarAlbumMouseClicked(evt);
+            }
+        });
+
+        btn_agregarsingle.setText("Agegar Single");
+        btn_agregarsingle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_agregarsingleMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_agregarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(tf_tituloPublicacion)
+                    .addComponent(btn_agregarsingle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(161, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(tf_tituloPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agregarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_agregarsingle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("Agregar Album/Single", jPanel7);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 564, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 344, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Agregar Lanzamiento", jPanel8);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -208,7 +285,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 344, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Modificar Lanzamiento", jPanel5);
@@ -221,7 +298,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 344, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Eliminar Lanzamiento", jPanel6);
@@ -570,6 +647,24 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_loginMouseClicked
 
+    private void btn_agregarAlbumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarAlbumMouseClicked
+        // TODO add your handling code here:
+        if (!tf_tituloPublicacion.getText().isBlank()) {
+            artistas.get(artistas.indexOf(artista)).getAlbumesP().add(new Album(0, tf_tituloPublicacion.getText(), jDateChooser1.getDate(), 0));
+        }else{
+            JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
+        }
+    }//GEN-LAST:event_btn_agregarAlbumMouseClicked
+
+    private void btn_agregarsingleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarsingleMouseClicked
+        // TODO add your handling code here:
+        if (!tf_tituloPublicacion.getText().isBlank()) {
+            artistas.get(artistas.indexOf(artista)).getCancionesS().add(new Single(tf_tituloPublicacion.getText(), jDateChooser1.getDate(), 0));
+        }else{
+            JOptionPane.showMessageDialog(this, "Los parametros no deben estar vacios");
+        }
+    }//GEN-LAST:event_btn_agregarsingleMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -606,11 +701,16 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregarAlbum;
+    private javax.swing.JButton btn_agregarsingle;
     private javax.swing.JButton btn_crearA;
     private javax.swing.JButton btn_crearU;
     private javax.swing.JButton btn_login;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -625,6 +725,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -635,6 +737,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField tf_password;
     private javax.swing.JPasswordField tf_passwordU;
     private javax.swing.JPasswordField tf_passwordU1;
+    private javax.swing.JTextField tf_tituloPublicacion;
     private javax.swing.JTextField tf_username;
     private javax.swing.JTextField tf_usernameU;
     private javax.swing.JTextField tf_usernameU1;
